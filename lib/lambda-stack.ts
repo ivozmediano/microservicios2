@@ -10,7 +10,7 @@ export class MyLamdaStack extends cdk.Stack {
 
         new Function(this, 'LambdaFunction', {
             runtime: Runtime.NODEJS_14_X,
-            handler: 'handler.handler',
+            handler: 'handler2.handler',
             code: Code.fromAsset(path.join(__dirname, 'lambda')), //Directorio donde se encuentra el código (debe añadirse)
             environment: { "stageName": stageName }
         });

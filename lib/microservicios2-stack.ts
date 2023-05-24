@@ -9,8 +9,8 @@ import { CodePipeline, CodePipelineSource, ShellStep } from "aws-cdk-lib/pipelin
 import * as cloudwatch from 'aws-cdk-lib/aws-cloudwatch';
 import * as actions from 'aws-cdk-lib/aws-cloudwatch-actions';
 import { Topic } from 'aws-cdk-lib/aws-sns';
-/*import { ManualApprovalStep } from 'aws-cdk-lib/pipelines';
-import { MyPipelineAppStage } from './stage';*/
+import { ManualApprovalStep } from 'aws-cdk-lib/pipelines';
+import { MyPipelineAppStage } from './stage';
 
 export class Microservicios2Stack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -103,7 +103,7 @@ export class Microservicios2Stack extends cdk.Stack {
     // Agrega una acción de notificación cuando se active la alarma
     lambdaAlarm.addAlarmAction(new actions.SnsAction(snsTopic));
 
-    new CodePipeline(this, 'Pipeline', {
+    const pipeline = new CodePipeline(this, 'Pipeline', {
       pipelineName: 'TestPipeline',
       synth: new ShellStep('Synth', {
         input: CodePipelineSource.gitHub('ivozmediano/microservicios2', 'main'),
@@ -114,8 +114,14 @@ export class Microservicios2Stack extends cdk.Stack {
       dockerEnabledForSelfMutation: true
     });
 
-    /*pipeline.addStage(new MyPipelineAppStage(this, "test", {
+    const testingStage = pipeline.addStage(new MyPipelineAppStage(this, "test", {
       env: { account: "061496817474", region: "eu-west-2" }
-    }));*/
+    }));
+
+    testingStage.addPost(new ManualApprovalStep('Manual approval before production'));
+
+    const prodStage = pipeline.addStage(new MyPipelineAppStage(this, "prod", {
+      env: { account: "061496817474", region: "eu-west-2" }
+    }));
   }
 }
