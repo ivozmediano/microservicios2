@@ -4,6 +4,7 @@ import * as cdk from 'aws-cdk-lib';
 import { Microservicios2Stack } from '../lib/microservicios2-stack';
 
 const app = new cdk.App();
+
 new Microservicios2Stack(app, 'Microservicios2Stack', {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
