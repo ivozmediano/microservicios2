@@ -115,13 +115,13 @@ export class Microservicios2Stack extends cdk.Stack {
     });
 
     const testingStage = pipeline.addStage(new MyPipelineAppStage(this, "test", {
-      env: { account: "061496817474", region: "eu-west-2" }
+      /*env: { account: "061496817474", region: "eu-west-2" }*/
     }));
 
     testingStage.addPost(new ManualApprovalStep('Manual approval before production'));
 
     const prodStage = pipeline.addStage(new MyPipelineAppStage(this, "prod", {
-      env: { account: "061496817474", region: "eu-west-2" }
+      /*env: { account: "061496817474", region: "eu-west-2" }*/
     }));
   }
 }
