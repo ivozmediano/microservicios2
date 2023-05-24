@@ -26,7 +26,7 @@ export class Microservicios2Stack extends cdk.Stack {
     const nuevoRegistroFunction = new lambda.Function(this, "NuevoRegistroFunction", {
       runtime: lambda.Runtime.NODEJS_14_X,
       handler: 'handler.nuevoRegistro', //Método nuevoRegistro del archivo handler.js
-      code: lambda.Code.fromAsset(path.resolve(__dirname, 'lambda')), //Directorio donde se encuentra el código (debe añadirse)
+      code: lambda.Code.fromAsset(path.join(__dirname, 'lambda')), //Directorio donde se encuentra el código (debe añadirse)
       environment: {
         TABLA_REGISTROS: tablaRegistros.tableName,
       },
@@ -35,7 +35,7 @@ export class Microservicios2Stack extends cdk.Stack {
     const consultaRegistroFunction = new lambda.Function(this, "ConsultaRegistroFunction", {
       runtime: lambda.Runtime.NODEJS_14_X,
       handler: 'handler.consultaRegistro', //Método consultaRegistro del archivo handler.js
-      code: lambda.Code.fromAsset(path.resolve(__dirname, 'lambda')), //Directorio donde se encuentra el código
+      code: lambda.Code.fromAsset(path.join(__dirname, 'lambda')), //Directorio donde se encuentra el código
       environment: {
         TABLA_REGISTROS: tablaRegistros.tableName,
       },
@@ -44,7 +44,7 @@ export class Microservicios2Stack extends cdk.Stack {
     const eliminaRegistroFunction = new lambda.Function(this, "EliminaRegistroFunction", {
       runtime: lambda.Runtime.NODEJS_14_X,
       handler: 'handler.eliminaRegistro', //Método eliminaRegistro del archivo handler.js
-      code: lambda.Code.fromAsset(path.resolve(__dirname, 'lambda')), //Directorio donde se encuentra el código
+      code: lambda.Code.fromAsset(path.join(__dirname, 'lambda')), //Directorio donde se encuentra el código
       environment: {
         TABLA_REGISTROS: tablaRegistros.tableName,
       },
@@ -53,7 +53,7 @@ export class Microservicios2Stack extends cdk.Stack {
     const consultaTodosRegistrosFunction = new lambda.Function(this, "ConsultaTodosRegistrosFunction", {
       runtime: lambda.Runtime.NODEJS_14_X,
       handler: 'handler.consultaTodosRegistros', //Método consultaTodosRegistros del archivo handler.js
-      code: lambda.Code.fromAsset(path.resolve(__dirname, 'lambda')), //Directorio donde se encuentra el código
+      code: lambda.Code.fromAsset(path.join(__dirname, 'lambda')), //Directorio donde se encuentra el código
       environment: {
         TABLA_REGISTROS: tablaRegistros.tableName,
       },
