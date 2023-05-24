@@ -107,7 +107,7 @@ export class Microservicios2Stack extends cdk.Stack {
       pipelineName: 'TestPipeline',
       synth: new ShellStep('Synth', {
         input: CodePipelineSource.gitHub('ivozmediano/microservicios2', 'main'),
-        commands: ['npm ci', 'npm run build', 'npm run cdk synth']
+        commands: ['npm ci', 'npm run build', 'npx cdk synth --debug']
       }),
       dockerEnabledForSynth: true,
       dockerEnabledForSelfMutation: true
