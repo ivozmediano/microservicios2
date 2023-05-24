@@ -6,11 +6,11 @@ import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as apigw from "aws-cdk-lib/aws-apigateway";
 import * as path from 'path';
 import { CodePipeline, CodePipelineSource, ShellStep } from "aws-cdk-lib/pipelines";
+import { ManualApprovalStep } from 'aws-cdk-lib/pipelines';
+import { MyPipelineAppStage } from './stage';
 import * as cloudwatch from 'aws-cdk-lib/aws-cloudwatch';
 import * as actions from 'aws-cdk-lib/aws-cloudwatch-actions';
 import { Topic } from 'aws-cdk-lib/aws-sns';
-import { ManualApprovalStep } from 'aws-cdk-lib/pipelines';
-import { MyPipelineAppStage } from './stage';
 
 export class Microservicios2Stack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
